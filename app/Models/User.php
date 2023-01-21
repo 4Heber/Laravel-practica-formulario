@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Post;
 
 class User extends Authenticatable
 {
@@ -41,4 +42,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Relationship 1:N to table Posts ( Post model - belongsTo(User::class) )
+    public function posts(){
+        return $this->hasMany(Post::class);
+        // Permite la consulta de los datos de los posts asociados al usuario:
+        // $posts = User::find(3)->posts;
+    }
 }
