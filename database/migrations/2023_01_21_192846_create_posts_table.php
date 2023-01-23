@@ -27,7 +27,7 @@ return new class extends Migration
             $table->timestamps();
 
             // Foreign key from table users
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable(true)->default(1);
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
