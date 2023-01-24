@@ -5,28 +5,29 @@
         <header class="p-3 text-bg-dark">
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
-                    </a>
 
-                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                        <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-                        <li><a href="#" class="nav-link px-2 text-white">Posts</a></li>
-                        <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+                    @include('layouts.navbar')
 
-                        <!-- route('posts.create') -->
-                        <a href="#" class="text-sm text-gray-700 dark:text-gray-500 ms-5 btn btn-outline-light">Create new post</a>
-                    </ul>
-
-                    <div class="text-end">
+                    <div class="d-flex justify-content-end">
                         @if (Route::has('login'))
                             @auth
-                                <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                                <div class="pt-2 me-4 text-warning">{{ Auth::user()->name }}</div>
+
+                                <!-- Authentication -->
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+
+                                    <x-dropdown-link :href="route('logout')"
+                                                     onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                        {{ __('Log Out') }}
+                                    </x-dropdown-link>
+                                </form>
                             @else
-                                <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline btn btn-outline-light me-2">Login</a>
+                                <a href="{{ route('login') }}" class="text-sm btn btn-outline-light me-2">Login</a>
 
                             @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline btn btn-warning">Sign-up</a>
+                                    <a href="{{ route('register') }}" class="ml-4 text-sm btn btn-warning">Sign-up</a>
                                 @endif
                             @endauth
                         @endif
@@ -36,6 +37,45 @@
         </header>
     </x-slot>
 
+        <div class="p-4">
+            <h2 class="text-light text-center fs-1">Posts</h2>
+        </div>
 
+        <section class="container">
+            <article class="row">
+                @for($i = sizeof($posts)-1; $i >= 0; $i--)
+                    <div class="col-4 p4 ">
+                        <div class="card mb-5 p-0">
+                            <div class="card-header text-bg-dark d-flex flex-row justify-content-start align-items-center">
+{{--                                <img src="#" class="card-img-top mr-2" alt="profile-img" style="width: 3rem">--}}
+                                <span>{{ $posts[$i]->autor }}</span>
+                            </div>
+
+                            <div class="card-body">
+                                <a href='{{ route('post.show', $posts[$i]->id) }}' style="text-decoration: none; cursor: pointer; ">
+                                    <h4 class="card-title">{{ $posts[$i]->titulo }}</h4>
+                                    <h5 class="card-subtitle text-dark">{{ $posts[$i]->extracto }}</h5>
+                                    <p class="card-text text-truncate text-muted py-4">{{ $posts[$i]->contenido }}</p>
+                                    <a href='{{ route('post.show', $posts[$i]->id) }}' class="btn btn-primary">Seguir leyendo</a>
+                                </a>
+                            </div>
+
+                            <div class="card-footer w-100 d-flex flex-row justify-content-between align-items-center">
+                                <div class="container w-75">
+                                    <p class="text-muted" style="font-size: 0.8rem; margin: 0;">Publicado: {{ $posts[$i]->created_at }}</p>
+                                    <p class="text-muted" style="font-size: 0.8rem; margin: 0;">Actualizado: {{ $posts[$i]->updated_at }}</p>
+                                </div>
+                                @auth
+                                    <div class="container w-50 d-flex flex-row justify-content-between">
+                                        <a href="#" class="text-danger"><i class="fas fa-backspace"></i> Eliminar</a>
+                                        <a href="#"><i class="fas fa-edit"></i> Editar</a>
+                                    </div>
+                                @endauth
+                            </div>
+                        </div>
+                    </div>
+                    @endfor
+            </article>
+        </section>
 
 </x-app-layout>

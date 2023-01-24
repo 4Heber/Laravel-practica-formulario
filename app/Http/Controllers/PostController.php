@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
@@ -27,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -38,7 +39,33 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // ID del usuario para insertar nombre autor
+        $usr_id = Auth::id();
+
+        // Validación del formulario
+        $request->validate([
+            'titulo' => ['required', 'min:4'],
+            'contenido' => ['required', 'min:6']
+        ]);
+
+        // Crear registro accediendo a los campos del formulario
+        $newPost = new Post();
+        $newPost->autor = User::find($usr_id)->name;
+        $newPost->titulo = $request->input('titulo');
+        $newPost->extracto = $request->input('extracto');
+        $newPost->caducable = $request->input('caducable', false);
+        $newPost->comentable = $request->input('comentable', false);
+        $newPost->acceso = $request->input('acceso');
+        $newPost->contenido = $request->input('contenido');
+        $newPost->user_id = $usr_id;
+
+        $newPost->save();
+
+        // Mensaje de sesion, indicando en método flash nombre del mensaje y el contenido
+        $request->session()->flash('status','Nuevo post publicado!');
+
+        // Retorno a la vista 'posts'
+        return to_route('post.index');
     }
 
     /**

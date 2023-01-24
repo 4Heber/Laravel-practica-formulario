@@ -25,7 +25,7 @@ class PostSeeder extends Seeder
         $post->comentable = false;
         $post->acceso = 'publico';
         $post->contenido = 'Creación de proyecto Laravel para practicar con formularios';
-        $post->fecha_publicacion = date('Y-m-d');
+//        $post->fecha_publicacion = date('Y-m-d');
         $post->user_id = 1;
         $post->save();
 

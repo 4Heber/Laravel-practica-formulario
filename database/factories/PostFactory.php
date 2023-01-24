@@ -25,7 +25,7 @@ class PostFactory extends Factory
             'comentable' => $this->faker->boolean(true),
             'acceso' => 'publico',
             'contenido' => $this->faker->paragraph(4),
-            'fecha_publicacion' => date('Y-m-d'),
+//            'fecha_publicacion' => date('Y-m-d'),
             'updated_at' => date('Y-m-d'),
             'created_at' => date('Y-m-d'),
             'user_id' => 1

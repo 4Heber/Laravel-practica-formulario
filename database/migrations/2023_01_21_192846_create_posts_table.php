@@ -15,19 +15,18 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('autor');
-            $table->string('titulo');
+            $table->string('autor')->nullable(false);
+            $table->string('titulo')->nullable(false);
             $table->string('extracto');
             $table->boolean('caducable')->default(false);
             $table->boolean('comentable')->default(false);
             $table->string('acceso')->default('publico');
-            $table->longText('contenido');
+            $table->longText('contenido')->nullable(false);
 
-            $table->date('fecha_publicacion');
             $table->timestamps();
 
             // Foreign key from table users
-            $table->unsignedBigInteger('user_id')->nullable(true)->default(1);
+            $table->unsignedBigInteger('user_id')->default(1);
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')

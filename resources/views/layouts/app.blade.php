@@ -12,6 +12,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.scss', 'resources/js/app.js'])
+        <script src="https://kit.fontawesome.com/a35b8b496f.js" crossorigin="anonymous"></script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -21,8 +22,15 @@
                 {{ $header }}
             @endif
 
+            <!-- Mensajes de session -->
+            @if(session()->exists('status'))
+                <div class="w-100 pt-4 text-success d-flex justify-content-center">
+                    <p class="fs-4">{{ session()->get('status') }}</p>
+                </div>
+            @endif
+
             <!-- Page Content -->
-            <main>
+            <main class="container p-4">
                 {{ $slot }}
             </main>
         </div>
