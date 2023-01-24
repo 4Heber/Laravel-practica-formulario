@@ -18,7 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PostController::class, 'index'])->name('post.index');
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
 Route::post('/post', [PostController::class, 'store'])->name('post.store');
-Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
+Route::get('/post/{post}', [PostController::class, 'show'])->name('post.show');
+Route::get('/post/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
+Route::patch('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

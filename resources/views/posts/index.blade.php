@@ -61,14 +61,14 @@
                             </div>
 
                             <div class="card-footer w-100 d-flex flex-row justify-content-between align-items-center">
-                                <div class="container w-75">
+                                <div class="container w-100">
                                     <p class="text-muted" style="font-size: 0.8rem; margin: 0;">Publicado: {{ $posts[$i]->created_at }}</p>
                                     <p class="text-muted" style="font-size: 0.8rem; margin: 0;">Actualizado: {{ $posts[$i]->updated_at }}</p>
                                 </div>
                                 @auth
-                                    <div class="container w-50 d-flex flex-row justify-content-between">
+                                    <div class="container w-75 d-flex flex-row justify-content-between">
                                         <a href="#" class="text-danger"><i class="fas fa-backspace"></i> Eliminar</a>
-                                        <a href="#"><i class="fas fa-edit"></i> Editar</a>
+                                        <a href="{{ route('post.edit', $posts[$i]) }}"><i class="fas fa-edit"></i> Editar</a>
                                     </div>
                                 @endauth
                             </div>

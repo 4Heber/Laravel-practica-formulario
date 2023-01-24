@@ -74,9 +74,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        //
+        return view('posts.show', ['post' => $post]);
     }
 
     /**
@@ -85,9 +85,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view('posts.edit', ['post' => $post]);
     }
 
     /**
@@ -97,9 +97,28 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        // Validación del formulario
+        $request->validate([
+            'titulo' => ['required', 'min:4'],
+            'contenido' => ['required', 'min:6']
+        ]);
+
+        $post->titulo = $request->input('titulo');
+        $post->extracto = $request->input('extracto');
+        $post->caducable = $request->input('caducable', false);
+        $post->comentable = $request->input('comentable', false);
+        $post->acceso = $request->input('acceso');
+        $post->contenido = $request->input('contenido');
+
+        $post->save();
+
+        // Mensaje de sesion, indicando en método flash nombre del mensaje y el contenido
+        $request->session()->flash('status','Post actualizado!');
+
+        // Retorno a la vista detalle del post editado
+        return to_route('post.show', $post);
     }
 
     /**
