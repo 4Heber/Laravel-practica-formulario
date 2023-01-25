@@ -56,6 +56,7 @@
                     <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>
+
             {{--Extracto del post--}}
             <div class="form-floating mb-4">
                 <input type="text" class="form-control rounded-2" id="extracto" placeholder="#" name="extracto" value="{{ old('extracto', $post->extracto) }}">

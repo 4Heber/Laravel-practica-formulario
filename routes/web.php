@@ -15,12 +15,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PostController::class, 'index'])->name('post.index');
-Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
-Route::post('/post', [PostController::class, 'store'])->name('post.store');
-Route::get('/post/{post}', [PostController::class, 'show'])->name('post.show');
-Route::get('/post/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
-Route::patch('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
+Route::get('/', [PostController::class, 'index'])->name('posts.index');
+//Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+//Route::post('/post', [PostController::class, 'store'])->name('posts.store');
+//Route::get('/post/{post}', [PostController::class, 'show'])->name('posts.show');
+//Route::get('/post/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
+//Route::patch('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
+//Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+// 'Nombre raíz de la ruta', NameController::class, [ 'names' => 'nombreRutoRaiz', 'parameters' => 'nombreParametroRuta' ]
+Route::resource('posts', PostController::class, [
+    'names' => 'posts',
+    'parameters' => ['posts' => 'post']
+]);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

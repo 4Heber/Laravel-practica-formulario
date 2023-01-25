@@ -52,11 +52,11 @@
                             </div>
 
                             <div class="card-body">
-                                <a href='{{ route('post.show', $posts[$i]->id) }}' style="text-decoration: none; cursor: pointer; ">
+                                <a href='{{ route('posts.show', $posts[$i]->id) }}' style="text-decoration: none; cursor: pointer; ">
                                     <h4 class="card-title">{{ $posts[$i]->titulo }}</h4>
                                     <h5 class="card-subtitle text-dark">{{ $posts[$i]->extracto }}</h5>
                                     <p class="card-text text-truncate text-muted py-4">{{ $posts[$i]->contenido }}</p>
-                                    <a href='{{ route('post.show', $posts[$i]->id) }}' class="btn btn-primary">Seguir leyendo</a>
+                                    <a href='{{ route('posts.show', $posts[$i]->id) }}' class="btn btn-primary">Seguir leyendo</a>
                                 </a>
                             </div>
 
@@ -67,8 +67,11 @@
                                 </div>
                                 @auth
                                     <div class="container w-75 d-flex flex-row justify-content-between">
-                                        <a href="#" class="text-danger"><i class="fas fa-backspace"></i> Eliminar</a>
-                                        <a href="{{ route('post.edit', $posts[$i]) }}"><i class="fas fa-edit"></i> Editar</a>
+                                        <form action="{{ route('posts.destroy', $posts[$i]) }}" method="POST">
+                                            @csrf @method('DELETE')
+                                            <button type="submit" class="text-danger"><i class="fas fa-backspace"></i> Eliminar</button>
+                                        </form>
+                                        <a href="{{ route('posts.edit', $posts[$i]) }}"><i class="fas fa-edit"></i> Editar</a>
                                     </div>
                                 @endauth
                             </div>

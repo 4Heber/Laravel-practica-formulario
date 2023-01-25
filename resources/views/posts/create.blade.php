@@ -45,7 +45,7 @@
     </div>
 
     <div class="container w-50 p-5 bg-dark rounded-2">
-        <form action="{{ route('post.store') }}" method="post" class="form-floating">
+        <form action="{{ route('posts.store') }}" method="post" class="form-floating">
             {{--Token CSRF--}}
             @csrf
             {{--Titulo del post--}}
@@ -80,7 +80,7 @@
 
             {{--Contenido--}}
             <div class="form-floating mb-4">
-                <textarea class="form-control rounded-2" placeholder="Contenido del post" id="floatingTextarea2" name="contenido" style="height: 100px" value="{{ old('contenido') }}" required></textarea>
+                <textarea class="form-control rounded-2" placeholder="Contenido del post" id="floatingTextarea2" name="contenido" style="height: 300px" value="{{ old('contenido') }}" required></textarea>
                 <label for="floatingTextarea2">Contenido del post ...</label>
                 @error('contenido')
                     <small class="text-danger">{{ $message }}</small>
