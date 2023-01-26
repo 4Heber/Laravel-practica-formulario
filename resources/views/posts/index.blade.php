@@ -37,7 +37,7 @@
         </header>
     </x-slot>
 
-        <div class="p-4">
+        <div class="p-4 pt-0">
             <h2 class="text-light text-center fs-1">Posts</h2>
         </div>
 
@@ -48,13 +48,13 @@
                         <div class="card mb-5 p-0">
                             <div class="card-header text-bg-dark d-flex flex-row justify-content-start align-items-center">
 {{--                                <img src="#" class="card-img-top mr-2" alt="profile-img" style="width: 3rem">--}}
-                                <span>{{ $posts[$i]->autor }}</span>
+                                <span class="fs-5">{{ $posts[$i]->titulo }}</span>
                             </div>
 
                             <div class="card-body">
                                 <a href='{{ route('posts.show', $posts[$i]->id) }}' style="text-decoration: none; cursor: pointer; ">
-                                    <h4 class="card-title">{{ $posts[$i]->titulo }}</h4>
-                                    <h5 class="card-subtitle text-dark">{{ $posts[$i]->extracto }}</h5>
+                                    <h4 class="card-title">{{ $posts[$i]->extracto }}</h4>
+                                    <h5 class="card-subtitle text-primary">@ {{ $posts[$i]->autor }}</h5>
                                     <p class="card-text text-truncate text-muted py-4">{{ $posts[$i]->contenido }}</p>
                                     <a href='{{ route('posts.show', $posts[$i]->id) }}' class="btn btn-primary">Seguir leyendo</a>
                                 </a>

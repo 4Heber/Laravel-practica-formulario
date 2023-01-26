@@ -29,6 +29,9 @@ Route::resource('posts', PostController::class, [
     'parameters' => ['posts' => 'post']
 ]);
 
+Route::get('/about', function (){
+    return view('info.repo');
+})->name('info.repo');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

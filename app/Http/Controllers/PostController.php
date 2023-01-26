@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\CreatePostRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -45,27 +46,28 @@ class PostController extends Controller
         // Validación del formulario
         $request->validate([
             'titulo' => ['required', 'min:4'],
+            'extracto' => ['required', 'min:4'],
             'contenido' => ['required', 'min:6']
         ]);
 
         // Crear registro accediendo a los campos del formulario
-        $newPost = new Post();
-        $newPost->autor = User::find($usr_id)->name;
-        $newPost->titulo = $request->input('titulo');
-        $newPost->extracto = $request->input('extracto');
-        $newPost->caducable = $request->input('caducable', false);
-        $newPost->comentable = $request->input('comentable', false);
-        $newPost->acceso = $request->input('acceso');
-        $newPost->contenido = $request->input('contenido');
-        $newPost->user_id = $usr_id;
+        $post = new Post();
+        $post->autor = User::find($usr_id)->name;
+        $post->titulo = $request->input('titulo');
+        $post->extracto = $request->input('extracto');
+        $post->caducable = $request->input('caducable', false);
+        $post->comentable = $request->input('comentable', false);
+        $post->acceso = $request->input('acceso');
+        $post->contenido = $request->input('contenido');
+        $post->user_id = $usr_id;
 
-        $newPost->save();
+        $post->save();
 
         // Mensaje de sesion, indicando en método flash nombre del mensaje y el contenido
         $request->session()->flash('status','Nuevo post publicado!');
 
         // Retorno a la vista 'posts'
-        return to_route('post.index');
+        return to_route('posts.index');
     }
 
     /**
@@ -87,6 +89,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $this->authorize('EditPost', $post);
+
         return view('posts.edit', ['post' => $post]);
     }
 
@@ -129,8 +133,10 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $this->authorize('EditPost', $post);
+
         $post->delete();
 
-        return to_route('post.index')->with('status', 'Post eliminado!');
+        return to_route('posts.index')->with('status', 'Post eliminado!');
     }
 }

@@ -9,6 +9,15 @@ class Post extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'titulo',
+    ];
+
     // Relationship 1:N to table Posts (User model - hasMany(Post::class) )
     public function user(){
         return $this->belongsTo(User::class);

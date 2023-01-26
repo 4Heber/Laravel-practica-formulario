@@ -53,7 +53,7 @@
                 <input type="text" class="form-control rounded-2" id="tituloPost" name="titulo" placeholder="#" value="{{ old('titulo') }}" autofocus required>
                 <label for="tituloPost">Título del post</label>
                 @error('titulo')
-                    <small class="text-danger">{{ $message }}</small>
+                    <small class="text-danger fs-5 mt-2">{{ $message }}</small>
                 @enderror
             </div>
             {{--Extracto del post--}}
@@ -61,14 +61,14 @@
                 <input type="text" class="form-control rounded-2" id="extracto" placeholder="#" name="extracto" value="{{ old('extracto') }}">
                 <label for="extracto">Extracto</label>
                 @error('extracto')
-                <small class="text-danger">{{ $message }}</small>
+                    <small class="text-danger fs-5 mt-2">{{ $message }}</small>
                 @enderror
             </div>
 
             <div class="d-flex">
                 {{--Caducable checkbox--}}
                 <div class="mb-4 me-4 form-check">
-                    <input type="checkbox" class="form-check-input" name="caducable">
+                    <input type="checkbox" class="form-check-input" name="caducable" >
                     <label class="form-check-label text-light" for="exampleCheck1">Caducable</label>
                 </div>
                 {{--Comentable checkbox--}}
@@ -83,7 +83,7 @@
                 <textarea class="form-control rounded-2" placeholder="Contenido del post" id="floatingTextarea2" name="contenido" style="height: 300px" value="{{ old('contenido') }}" required></textarea>
                 <label for="floatingTextarea2">Contenido del post ...</label>
                 @error('contenido')
-                    <small class="text-danger">{{ $message }}</small>
+                    <small class="text-danger fs-5 mt-2">{{ $message }}</small>
                 @enderror
             </div>
 
