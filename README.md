@@ -1,66 +1,75 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <h1 align="center">DWES - Desarrollo Web Entorno Servidor</h1>
+  <h3 align="center">UD6 Formularios con Laravel</h3>
 </p>
 
-## About Laravel
+<div align="center">
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+[![Status](https://img.shields.io/badge/status-active-success.svg)]()
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+</div>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 📑 About <a name = "about"></a>
 
-## Learning Laravel
+### Formulario
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Crear una migración a partir de las indicaciones que se encuentran en el formulario base.
+- Crear el formulario para introducir los datos del formulario, usando Html y Bootstrap. El campo acceso será de tipo select.
+- Añadir a este formulario los 'old values'.
+- Añadir soporte multilingüe para todos los labels del formulario. Utilizar las dos formas de traducción, alternativamente.
+- De acuerdo con lo indicado en la migración, marcar como ‘required’ las entradas de formulario de los campos no nulos. Será la única validación realizada en el cliente.
+- Modificar el formulario, usando Blade, para tratar los errores de validación que puedan producirse. Obligatoriamene se mostrarán al principio del formulario cuando falle la validación, Se valora también que se informe a pie de input.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Controlador
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Crear un controlador de tipo resource para la implementación de un CRUD, ‘PostController’.
+- Crear la validación del formulario en el controlador anterior, aplicada al método que inserta los datos en la tabla.
+- Crear las rutas que manejen las operaciones del controlador anterior.
+- Crear una ruta predeterminada que dirija las peticiones al punto de posts/create.
 
-## Laravel Sponsors
+### Incersión
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- Crear el modelo Post, añadiendo lo necesario para permitir una inserción usando Eloquent.
+- Insertar al menos 2 post, manualmente o con otro método. Puedes usar sentencias raw (dependientes del SGBD) , QueryBuilder o Eloquent.
+- Usar Gate para controlar que la actualización/eliminación solo pueda hacerla el autor del post.
+- Subida a GitHub
+- Despliegue en remoto
 
-### Premium Partners
+### Preview
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+#### Usuario no autenticado
 
-## Contributing
+<img src="https://user-images.githubusercontent.com/77643882/214837215-7ede9e8e-6d78-4a64-a360-8a9c947fb879.png" alt="Ejemplo-1" width="100%" />
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+#### Usuario autenticado
 
-## Code of Conduct
+Login para test:
+- Email: test_user@gmail.com
+- Pass: admin1234
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+<img src="https://user-images.githubusercontent.com/77643882/214837506-253a7a87-fafa-4620-89aa-ba3e39da29a1.png" alt="Ejemplo-1" width="100%" />
 
-## Security Vulnerabilities
+#### Formulario creación nuevo post
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+<img src="https://user-images.githubusercontent.com/77643882/214838236-0a0d00ea-4abc-4ea4-ad0c-f6f4f6b6b3cf.png" alt="Ejemplo-1" width="100%" />
 
-## License
+#### Vista post individual
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<img src="https://user-images.githubusercontent.com/77643882/214838566-22ce6942-1bbd-4cee-9f80-aea432a21d12.png" alt="Ejemplo-1" width="100%" />
+
+#### Vista error 403 no autorizado
+
+<img src="https://user-images.githubusercontent.com/77643882/214839749-f666c056-5283-42bc-8a0a-707317cbcdb9.png" alt="Ejemplo-1" width="100%" />
+
+
+
+
+
+
+
+
+
+
+
